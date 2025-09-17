@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Share Ride</title>
+    <link rel="icon" href="https://i.pinimg.com/originals/bb/49/5b/bb495ba3db3be888b6a8b1e8f1ad7e2d.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            height: 100%; /* Ensures full height for the background */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(31, 31, 31, 0.9); /* Slight transparency for better readability */
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        header h1 {
+            margin: 0;
+            padding: 0px;
+            border: 0px solid #3b82f6;
+            border-radius: 5px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s, border 0.3s;
+            border: 2px solid transparent;
+        }
+
+        nav ul li a:hover {
+            background-color: #3b82f6;
+            color: #121212;
+            border: 2px solid #3b82f6;
+        }
+
+        /* About Us Section */
+        .about-section {
+            padding: 40px 20px;
+            background-image: url('https://wallpapercave.com/wp/wp6571932.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh; /* Full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+        }
+
+        .about-section h2 {
+            color: #3b82f6;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .about-card {
+            background-color: rgba(44, 62, 80, 0.8); /* Semi-transparent for better readability */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(52, 152, 219, 0.9);
+        }
+
+        .about-card h3 {
+            color: #3b82f6;
+        }
+
+        .about-card p {
+            line-height: 1.6;
+        }
+ /* Fixed Social Media Icons */
+ .social-icons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .social-icons a {
+            color: white;
+            margin: 10px 0;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #3b82f6;
+        }
+        /* Footer */
+        footer {
+            background-color: rgba(31, 31, 31, 0.9); /* Match header transparency */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            border-top: 4px solid #3b82f6;
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1><a href="index.html" style="color: white; text-decoration: none;">ShareRide</a></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="review.html">Review</a></li>
+                <li><a href="help.html">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="about-section">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <div class="about-card">
+                <h3>Our Mission</h3>
+                <p>To create a sustainable, affordable, and safe mobility ecosystem for students by connecting peers for ride-sharing, reducing daily travel costs, minimizing carbon footprint, and building a strong sense of community on campuses.</p>
+            </div>
+            <div class="about-card">
+                <h3>What We Do</h3>
+                <p>EcoRide is a ride-sharing platform designed for college students to make daily commuting easier and more affordable. We connect students who have spare seats in their vehicles with those who need a ride, ensuring verified and safe travel within the campus community. By reducing extra vehicles on the road, EcoRide helps save fuel, cut costs, and promote eco-friendly transportation.</p>
+            </div>
+            <div class="about-card">
+                <h3>Our Expertise</h3>
+                <p>Our team combines strong technical and creative skills to deliver a complete ride-sharing solution. We specialize in frontend and backend development, database management, and seamless integration of payments and Google Maps APIs. With experience in cloud deployment and a focus on UI/UX, we ensure the platform is scalable, secure, and student-friendly.</p>
+            </div>
+            <div class="about-card">
+                <h3>Customer-Centric Approach</h3>
+                <p>At EcoRide, our focus is on solving real problems faced by students in their daily commute. We designed the platform with a student-first mindset, ensuring affordability, safety, and ease of use. Verified student accounts, simple ride booking, transparent fares, and eco-friendly rides reflect our commitment to a seamless user experience. By continuously gathering feedback and adapting to student needs, EcoRide evolves as a trusted companion for everyday travel.</p>
+            </div>
+            <div class="about-card">
+                <h3>Innovation and Research</h3>
+                <p>EcoRide is built on research-driven insights into student commuting challenges like high costs, safety, and limited transport options. Our platform introduces innovations such as AI-based ride matching, student-only verification, and eco-friendly travel. This makes EcoRide a unique, scalable, and future-ready mobility solution for campuses.</p>
+            </div>
+            <div class="about-card">
+                <h3>Global Presence</h3>
+                <p>EcoRide solves commuting challenges faced by students worldwide. With scalable cloud infrastructure, multi-language support, and regional payment integration, our platform can expand across global campuses. Our vision is to create a worldwide student ride-sharing community.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Share-Ride. All rights reserved.</p>
+    </footer>
+    <!-- Fixed Social Media Icons -->
+    <div class="social-icons">
+        <a href="https://www.instagram.com/sharemyride_official?igsh=bWU2MDZlNngwMW1t" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/@sharemyride-s6w?si=AVczZ9NbBbMH940v" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.linkedin.com/in/share-my-ride-022281385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/ShareMyRid30840?t=6PNzJWIVOW738Dh0AdRTlA&s=08" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+</body>
+</html>
+

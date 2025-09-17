@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help Center</title>
+  <link rel="icon" href="https://i.pinimg.com/originals/bb/49/5b/bb495ba3db3be888b6a8b1e8f1ad7e2d.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #000000, #0a1f2f);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #111;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #3b82f6;
+    }
+    header h2 { margin: 0; color: #fff; font-size: 24px; }
+    header h2 a { text-decoration: none; color: #fff; }
+    nav a {
+      color: #fff; margin-left: 20px; text-decoration: none; font-weight: bold; transition: 0.3s;
+    }
+    nav a:hover { color: #3b82f6; }
+    .hero { text-align: center; padding: 60px 20px; }
+    .hero h1 { font-size: 32px; margin-bottom: 15px; color: #3b82f6; }
+    .hero p { font-size: 18px; max-width: 600px; margin: auto; }
+
+    .faq { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+    .faq-box {
+      background: #1a1a1a; border-radius: 10px; padding: 20px; margin-bottom: 20px;
+      border: 1px solid #00e0ff33;
+    }
+    .faq-box h3 { margin: 0 0 10px; color: #3b82f6; }
+    .faq-box p { margin: 0; font-size: 16px; line-height: 1.5; }
+
+    /* Chatbot Styling */
+    .chatbot-container {
+      position: fixed; bottom: 80px; right: 20px; width: 320px;
+      background: #111; border: 1px solid #3b82f6; border-radius: 10px;
+      overflow: hidden; display: none; flex-direction: column;
+    }
+    .chatbot-header {
+      background: #3b82f6; color: #000; padding: 10px;
+      font-weight: bold; text-align: center;
+    }
+    .chatbot-messages {
+      height: 300px; overflow-y: auto; padding: 10px; background: #1a1a1a; font-size: 14px;
+    }
+    .chatbot-messages .user { text-align: right; color: #0ef; margin: 5px 0; }
+    .chatbot-messages .bot { text-align: left; color: #3b82f6; margin: 5px 0; }
+    .chatbot-input { display: flex; border-top: 1px solid #00e0ff33; }
+    .chatbot-input input {
+      flex: 1; padding: 10px; border: none; background: #111; color: #fff; font-size: 14px;
+    }
+    .chatbot-input button {
+      background: #3b82f6; border: none; padding: 10px 15px; cursor: pointer; font-weight: bold;
+    }
+    .chatbot-toggle {
+      position: fixed; bottom: 90px; right: 20px;
+      background: #3b82f6; border: none; padding: 12px 18px; border-radius: 50px;
+      cursor: pointer; font-weight: bold;
+    }
+
+    footer {
+      margin-top: auto; background: #111; padding: 20px; text-align: center;
+      border-top: 2px solid #3b82f6;
+    }
+    footer .social-icons a {
+      color: #fff; margin: 0 10px; font-size: 20px; transition: 0.3s;
+    }
+    footer .social-icons a:hover { color: #3b82f6; }
+    footer p { margin-top: 10px; font-size: 14px; color: #aaa; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2><a href="index.html">ShareRide</a></h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="AboutUs.html">About Us</a>
+      <a href="Signup.html">Sign Up</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>How Can We Help You?</h1>
+    <p>Your safety is our priority. Explore solutions or ask our AI assistant for help.</p>
+  </section>
+
+  <section class="faq">
+    <div class="faq-box">
+      <h3>What is ShareRide?</h3>
+      <p>ShareRide is a ride-sharing platform that lets people book or offer rides to save cost, reduce traffic, and travel conveniently.</p>
+    </div>
+    <div class="faq-box">
+      <h3>How do I book a ride?</h3>
+      <p>Go to the Rider page, enter pickup and drop, check available rides, and confirm your booking.</p>
+    </div>
+    <div class="faq-box">
+      <h3>How can drivers share their ride?</h3>
+      <p>Drivers can go to the Driver page, enter pickup, drop, vehicle type, fare, and share their ride.</p>
+    </div>
+    <div class="faq-box">
+      <h3>Can I cancel my ride?</h3>
+      <p>Yes, you can cancel before confirmation or directly from your active ride section.</p>
+    </div>
+    <div class="faq-box">
+      <h3>How do I pay for my ride?</h3>
+      <p>Currently, payment is cash-only, but online payment options will be added soon.</p>
+    </div>
+  </section>
+
+  <!-- Chatbot Widget -->
+  <button class="chatbot-toggle" onclick="toggleChat()">💬 Chat</button>
+  <div class="chatbot-container" id="chatbot">
+    <div class="chatbot-header">AI ChatBot</div>
+    <div class="chatbot-messages" id="chatMessages"></div>
+    <div class="chatbot-input">
+      <input type="text" id="userInput" placeholder="Ask something..." />
+      <button onclick="sendMessage()">Send</button>
+      <button onclick="startVoice()" title="Speak"><i class="fa fa-microphone"></i></button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="social-icons">
+      <a href="https://youtube.com/@sharemyride-s6w?si=AVczZ9NbBbMH940v" target="_blank"><i class="fab fa-youtube"></i></a>
+      <a href="https://x.com/ShareMyRid30840?t=6PNzJWIVOW738Dh0AdRTlA&s=08"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/sharemyride_official?igsh=bWU2MDZlNngwMW1t"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/share-my-ride-022281385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p>&copy; 2025 ShareRide. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleChat() {
+      const bot = document.getElementById("chatbot");
+      bot.style.display = bot.style.display === "flex" ? "none" : "flex";
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("userInput");
+      const messages = document.getElementById("chatMessages");
+      const userText = input.value.trim();
+      if (userText === "") return;
+
+      messages.innerHTML += `<p class="user"><b>You:</b> ${userText}</p>`;
+
+      let botReply = "Sorry, I didn’t understand. Can you rephrase?";
+      if (userText.toLowerCase().includes("hello")) {
+        botReply = "Hello! How can I assist you with ShareRide?";
+      } else if (userText.toLowerCase().includes("book")) {
+        botReply = "To book a ride: go to Rider page → enter pickup & drop → choose a ride → confirm.";
+      } else if (userText.toLowerCase().includes("cancel")) {
+        botReply = "Yes, you can cancel your ride before confirmation or from your active ride section.";
+      } else if (userText.toLowerCase().includes("driver")) {
+        botReply = "Drivers can share rides from the Driver page by filling pickup, drop, vehicle type, and fare.";
+      } else if (userText.toLowerCase().includes("pay")) {
+        botReply = "Payment is currently cash-only. Online payment will be added soon.";
+      }
+
+      messages.innerHTML += `<p class="bot"><b>Bot:</b> ${botReply}</p>`;
+      messages.scrollTop = messages.scrollHeight;
+      input.value = "";
+    }
+
+    // 🎙️ Voice Input
+    function startVoice() {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert("Sorry, your browser does not support voice recognition.");
+        return;
+      }
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.start();
+      recognition.onresult = function(event) {
+        document.getElementById("userInput").value = event.results[0][0].transcript;
+        sendMessage();
+      };
+    }
+  </script>
+
+</body>
+</html>

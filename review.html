@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Reviews</title>
+<link rel="icon" href="https://i.pinimg.com/originals/bb/49/5b/bb495ba3db3be888b6a8b1e8f1ad7e2d.jpg" type="image/x-icon" 
+  <!-- Font Awesome CDN for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #000000, #0a1f2f);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background: #111;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #3b82f6;
+    }
+    header h2 {
+      margin: 0;
+      color: #fff;
+      font-size: 24px;
+    }
+    header h2 a {
+      text-decoration: none;
+      color: #fff;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: #3b82f6;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .hero h1 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: #3b82f6;
+    }
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .reviews {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .review-box {
+      background: #1a1a1a;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #00e0ff33;
+    }
+    .review-box h3 {
+      margin: 0 0 10px;
+      color: #3b82f6;
+    }
+    .review-box p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    /* Feedback Form Styling */
+    .feedback {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #111;
+      border-radius: 10px;
+      border: 1px solid #00e0ff33;
+    }
+    .feedback h2 {
+      color: #3b82f6;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    .feedback form {
+      display: flex;
+      flex-direction: column;
+    }
+    .feedback input, .feedback textarea, .feedback button {
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    .feedback input, .feedback textarea {
+      background: #1a1a1a;
+      color: #fff;
+      border: 1px solid #00e0ff66;
+    }
+    .feedback textarea {
+      resize: none;
+      height: 100px;
+    }
+    .feedback button {
+      background: #3b82f6;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .feedback button:hover {
+      background: #3b82f6;
+    }
+
+    /* Footer Styling */
+    footer {
+      margin-top: auto;
+      background: #111;
+      padding: 20px;
+      text-align: center;
+      border-top: 2px solid #3b82f6;
+    }
+    footer .social-icons a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 20px;
+      transition: 0.3s;
+    }
+    footer .social-icons a:hover {
+      color: #3b82f6;
+    }
+    footer p {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h2><a href="index.html">ShareRide</a></h2>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="help.html">help</a>
+      <a href="AboutUs.html">About Us</a>
+      <a href="Signup .html">Sign Up</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>What Our Users Say</h1>
+    <p>We value feedback from our users. Here are some of the latest reviews shared by our community.</p>
+  </section>
+
+  <section class="reviews">
+    <div class="review-box">
+      <h3>⭐ 5/5 - Excellent Experience</h3>
+      <p>"The platform was smooth and easy to use. I felt secure and everything worked perfectly."</p>
+    </div>
+
+    <div class="review-box">
+      <h3>⭐ 4/5 - Very Good</h3>
+      <p>"Overall experience was good, though I’d love to see even more features in the future."</p>
+    </div>
+
+    <div class="review-box">
+      <h3>⭐ 5/5 - Highly Recommended</h3>
+      <p>"This service exceeded my expectations. Support was fast and responsive."</p>
+    </div>
+  </section>
+
+  <!-- Feedback Form Section -->
+  <section class="feedback">
+    <h2>Leave Your Feedback</h2>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Write your feedback here..." required></textarea>
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="social-icons">
+      <a href="https://youtube.com/@sharemyride-s6w?si=AVczZ9NbBbMH940v" target="_blank" aria-label="YouTube"><i class="fab fa-youtube" style="font-size:18px;"></i></a>
+      <a href="https://x.com/ShareMyRid30840?t=6PNzJWIVOW738Dh0AdRTlA&s=08"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.instagram.com/sharemyride_official?igsh=bWU2MDZlNngwMW1t"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/share-my-ride-022281385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin-in"></i></a>
+       <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p>&copy; 2025 Share My Ride. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

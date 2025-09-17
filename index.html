@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ShareRide — Home</title>
+  <link rel="icon" href="https://i.pinimg.com/originals/bb/49/5b/bb495ba3db3be888b6a8b1e8f1ad7e2d.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="ShareRide — Smart & Safe ride-sharing app. SIH 2025 demo frontend." />
+
+  <style>
+    :root{
+      --bg:#071722; --card:#071a22; --muted:#9aa5b1; --accent:#3b82f6; --accent2:#3b82f6;
+      --glass: rgba(255,255,255,0.03); --danger:#ef4444; --radius:14px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100%;
+      background: linear-gradient(180deg, #041322 0%, #071722 60%);
+      color: #e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Watermark */
+    body::before{
+      content: "ShareRide";
+      position: fixed;
+      inset: 0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:8rem;
+      color: rgba(255,255,255,0.03);
+      transform: rotate(-20deg);
+      pointer-events:none;
+      z-index:0;
+      user-select:none;
+      letter-spacing:8px;
+    }
+
+    /* Page layout */
+    .site {
+      max-width:1200px;
+      margin: 18px auto;
+      padding: 18px;
+      position:relative;
+      z-index:1;
+    }
+
+    /* Header / Navbar */
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 0;
+    }
+    .brand {
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .brand .logo {
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      text-decoration:none;
+      color:inherit;
+    }
+    .logo-mark{
+      width:48px;height:48px;border-radius:10px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#021229;
+      box-shadow: 0 6px 20px rgba(3,7,18,0.6);
+    }
+    .brand h1 { font-size:18px; margin:0; letter-spacing:0.2px; }
+    .brand p { margin:0; font-size:12px; color:var(--muted); }
+
+    nav { display:flex; align-items:center; gap:14px; }
+    .nav-links { display:flex; gap:10px; align-items:center; }
+    .nav-links a { color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px; font-weight:600; font-size:14px; }
+    .nav-links a:hover, .nav-links a.active { color: white; background: rgba(255,255,255,0.03); }
+
+    .auth { display:flex; gap:8px; }
+    .btn { padding:9px 14px; border-radius:10px; border:0; cursor:pointer; font-weight:700; font-size:14px; }
+    .btn.ghost { background:transparent; color:var(--muted); border:1px solid rgba(255,255,255,0.04); }
+    .btn.primary { background:linear-gradient(90deg,var(--accent),var(--accent2)); color:#041022; }
+
+    /* Hero + grid */
+    .hero {
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:24px;
+      align-items:start;
+      margin-top:18px;
+    }
+    @media (max-width:980px){ .hero{ grid-template-columns:1fr; } }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:18px;
+      border-radius:var(--radius);
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+      border: 1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Map area */
+    #map {
+      height:480px;
+      border-radius:12px;
+      overflow:hidden;
+      background: linear-gradient(180deg,#072a3a,#04202a);
+      position:relative;
+      display:flex;flex-direction:column;
+    }
+    #map iframe, #realMap { width:100%; height:100%; border:0; display:block; }
+
+    /* Booking form */
+    form { display:flex; flex-direction:column; gap:10px; }
+    label{ font-size:13px; color:var(--muted); }
+    input, select { padding:10px 12px; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.04); color:inherit; }
+    .small { font-size:13px; color:var(--muted); }
+
+    .row { display:flex; gap:10px; align-items:center; }
+    .row .col { flex:1; }
+
+    .meta { display:flex; justify-content:space-between; align-items:center; gap:12px; color:var(--muted); }
+
+    /* Toast / Modal / SOS */
+    .toast { position:fixed; right:20px; bottom:20px; background:#061222; padding:12px 16px; border-radius:10px; box-shadow:0 8px 30px rgba(2,6,23,0.7); display:none; color:#dff7ff; z-index:2000; }
+    .toast.show { display:block; animation:toastIn .28s ease; }
+    @keyframes toastIn { from { transform:translateY(12px); opacity:0;} to { transform:none; opacity:1;} }
+
+    .sos {
+      position: fixed;
+      bottom: 88px;
+      right: 22px;
+      background:var(--danger);
+      color:white;
+      border:0;
+      width:62px;height:62px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;cursor:pointer; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000;
+    }
+
+    /* Footer */
+    footer { margin-top:20px; text-align:center; padding:20px 8px; color:var(--muted); }
+    .socials { display:flex; justify-content:center; gap:14px; margin-top:8px; }
+    .socials a { color:inherit; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; width:44px;height:44px;border-radius:10px; background:rgba(255,255,255,0.02); }
+    .socials a:hover { transform:translateY(-6px); color:white; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+
+    /* small utilities */
+    .center { text-align:center; }
+    .muted { color:var(--muted); font-size:13px; }
+    @media (max-width:520px){
+      .brand h1 { font-size:16px; }
+      .logo-mark{ width:40px;height:40px; }
+      .hero { gap:16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="site" role="application">
+
+    <!-- HEADER -->
+    <header role="banner">
+      <div class="brand" aria-hidden="false">
+        <a href="index.html" class="logo" aria-label="ShareRide - Home">
+          <div class="logo-mark">SR</div>
+          <div>
+            <h1>ShareRide</h1>
+            <p class="muted">Smart • Safe • Shared</p>
+          </div>
+        </a>
+      </div>
+
+      <nav aria-label="Main Navigation">
+        <div class="nav-links" role="navigation">
+          <a href="index.html" class="active" id="nav-home">Home</a>
+          <a href="AboutUs.html" id="nav-about">About Us</a>
+          <a href="help.html" id="nav-about">Help</a>
+          <a href="review.html" id="nav-review">Review</a>
+          <a href="driver.html" id="nav-review">Driver</a>
+       <div class="auth">
+       <a href="signup.html" class="btn ghost">Login</a>
+      <a href="signup.html" class="btn primary">Signup</a>
+        </div>
+
+       
+      </nav>
+    </header>
+
+    <!-- HERO / GRID -->
+    <main class="hero" role="main">
+
+      <!-- LEFT: Map + Info -->
+      <section class="card" aria-labelledby="mapTitle" style="min-height:480px;">
+        <h2 id="mapTitle">Live Map & Tracking</h2>
+        <p class="muted">Real map when API key is configured. Otherwise demo embed shown.</p>
+
+        <div id="map" aria-hidden="false">
+          <!-- Fallback embedded iframe. If user adds API key, JS will replace with real map. -->
+          <iframe id="mapFallback" loading="lazy"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.83924934902!2d77.0688992!3d28.527582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd1ab1e3f6c7%3A0x6dbf7aa1f3f31c2!2sDelhi!5e0!3m2!1sen!2sin!4v1693993035409!5m2!1sen!2sin"
+            style="border:0;"></iframe>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: Booking Card -->
+      <aside class="card" aria-labelledby="bookingTitle">
+        <h3 id="bookingTitle">Book a Ride</h3>
+        <form id="bookingForm" onsubmit="return false;">
+          <label for="pickup">Pickup</label>
+          <input id="pickup" type="text" placeholder="MR Road, City" aria-label="Pickup location">
+
+          <label for="drop">Drop</label>
+          <input id="drop" type="text" placeholder="Railway Station, City" aria-label="Drop location">
+
+          <div class="row">
+            <div class="col">
+              <label for="vehicle">Vehicle Type</label>
+              <select id="vehicle" aria-label="Vehicle type">
+                <option>Car</option>
+                <option>Auto</option>
+                <option>Bike</option>
+              </select>
+            </div>
+            <div style="width:130px;">
+              <label>&nbsp;</label>
+              <button class="btn" id="findBtn" onclick="findRide()">Find Ride</button>
+            </div>
+          </div>
+
+          <div style="height:8px"></div>
+          <div class="meta">
+            <div class="small">Estimated Fare</div>
+            <div style="font-weight:700">₹ <span id="fare">-</span></div>
+          </div>
+          <div class="meta" style="margin-top:6px">
+            <div class="small">ETA</div>
+            <div style="font-weight:700"><span id="eta">-</span> mins</div>
+          </div>
+
+          <div style="height:10px"></div>
+          <button class="btn primary" onclick="requestRide()" style="width:100%;">Request Ride</button>
+
+          <div style="height:12px"></div>
+          <div class="small muted">Note: To enable precise distance & fare, configure Google Maps API key in the code (Distance Matrix API).</div>
+        </form>
+      </aside>
+
+    </main>
+
+    <!-- Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <!-- SOS -->
+    <button class="sos" id="sos" aria-label="Emergency SOS" title="Emergency SOS">🚨</button>
+
+    <!-- FOOTER -->
+    <footer role="contentinfo" class="card" style="margin-top:18px;">
+      <div class="center">
+        <strong>ShareRide</strong> — Smart • Safe • Shared
+      </div>
+
+      <div class="socials" role="navigation" aria-label="Social links" style="margin-top:10px;">
+        
+        <a href="https://youtube.com/@sharemyride-s6w?si=AVczZ9NbBbMH940v" target="_blank" aria-label="YouTube"><i class="fab fa-youtube" style="font-size:18px;"></i></a>
+        <a href="https://www.linkedin.com/in/share-my-ride-022281385?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin" style="font-size:18px;"></i></a>
+        <a href="https://x.com/ShareMyRid30840?t=6PNzJWIVOW738Dh0AdRTlA&s=08" target="_blank" aria-label="Twitter"><i class="fab fa-twitter" style="font-size:18px;"></i></a>
+        <a href="https://www.instagram.com/sharemyride_official?igsh=bWU2MDZlNngwMW1t" target="_blank" aria-label="Instagram"><i class="fab fa-instagram" style="font-size:18px;"></i></a>
+        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+      </div>
+
+      <div style="margin-top:12px" class="muted">© 2025 ShareRide — Built for SIH 2025</div>
+    </footer>
+
+  </div>
+
+  <script>
+    /*****************************
+     Config
+     - If you have a Google Maps API key, paste it below (Distance Matrix + Maps JS enabled).
+     - If empty, demo fallback (random distances) will be used so the site works offline.
+    *****************************/
+    const GOOGLE_MAPS_API_KEY = ''; // <-- paste your key here for real distances
+
+    // Utility: show toast
+    const toastEl = document.getElementById('toast');
+    function showToast(msg, timeout=2200){
+      toastEl.textContent = msg;
+      toastEl.classList.add('show');
+      setTimeout(()=> toastEl.classList.remove('show'), timeout);
+    }
+
+    // Navbar active highlight (simple)
+    document.querySelectorAll('.nav-links a').forEach(a=>{
+      a.addEventListener('click', e=>{
+        document.querySelectorAll('.nav-links a').forEach(x=>x.classList.remove('active'));
+        e.currentTarget.classList.add('active');
+      });
+    });
+
+    // SOS behaviour
+    document.getElementById('sos').addEventListener('click', ()=> {
+      // In production: capture user location, call backend / sms / call
+      // Demo: show confirm dialog and toast
+      const ok = confirm('🚨 SOS will notify your emergency contacts and nearby help. Continue?');
+      if(ok){
+        // Simulate sending location / alarm
+        showToast('SOS sent — emergency contacts notified (demo).');
+        // Optionally open a new tab to a help number / service
+        // window.open('tel:112');
+      }
+    });
+
+    // Fare & Ride flow
+    const fareEl = document.getElementById('fare');
+    const etaEl = document.getElementById('eta');
+
+    function displayFare(km, distanceText){
+      const base = 50;
+      const perKm = 12;
+      const fare = base + perKm * km;
+      fareEl.textContent = fare.toFixed(2);
+      // derive ETA roughly: base 2 mins + 1.5 mins per km
+      const eta = Math.max(2, Math.round(2 + (1.5 * km)));
+      etaEl.textContent = eta;
+      return {fare, eta};
+    }
+
+    // calculateFare: uses Google DistanceMatrix if configured; otherwise demo random
+    function calculateFare(pickup, drop){
+      return new Promise((resolve, reject) => {
+        if(!pickup || !drop) return reject('Enter pickup and drop');
+
+        if(GOOGLE_MAPS_API_KEY && typeof google !== 'undefined' && google.maps && google.maps.DistanceMatrixService){
+          const svc = new google.maps.DistanceMatrixService();
+          svc.getDistanceMatrix({
+            origins: [pickup],
+            destinations: [drop],
+            travelMode: 'DRIVING',
+            unitSystem: google.maps.UnitSystem.METRIC
+          }, (resp, status) => {
+            if(status !== 'OK') return reject(status);
+            const el = resp.rows[0].elements[0];
+            if(el.status !== 'OK') return reject(el.status);
+            const km = Math.max(1, Math.round((el.distance.value / 1000) * 10) / 10); // 0.1 km precision
+            resolve({km, text: el.distance.text});
+          });
+        } else {
+          // demo fallback: realistic random distance 2-15 km
+          const km = Math.floor(Math.random() * 14) + 2;
+          resolve({km, text: km + ' km (demo)'});
+        }
+      });
+    }
+
+    async function findRide(){
+      const pickup = document.getElementById('pickup').value.trim();
+      const drop = document.getElementById('drop').value.trim();
+      if(!pickup || !drop) { alert('Please enter both pickup and drop'); return; }
+      showToast('Searching nearby drivers...');
+      try{
+        const res = await calculateFare(pickup, drop);
+        displayFare(res.km, res.text);
+        // small simulated driver search
+        setTimeout(()=> showToast('Driver found — Ravi (demo)'), 900);
+      } catch(err){
+        alert('Distance error: ' + err);
+      }
+    }
+
+    async function requestRide(){
+      const pickup = document.getElementById('pickup').value.trim();
+      const drop = document.getElementById('drop').value.trim();
+      if(!pickup || !drop) { alert('Enter pickup & drop'); return; }
+
+      // Calculate fare (again) then "request"
+      try{
+        const res = await calculateFare(pickup, drop);
+        displayFare(res.km, res.text);
+        // simulate driver assign + toast + modal fallback
+        showToast('Requesting drivers...');
+        setTimeout(()=>{
+          showToast('Driver Ravi accepted the ride (demo)');
+          // In production open ride tracking view or websocket
+          window.location.href = 'driver.html'; // redirect optionally to driver/ride tracking page
+        },1100);
+      } catch(e){
+        alert('Could not request ride: ' + e);
+      }
+    }
+
+    // If API KEY provided, load Google Maps JS dynamically and initialize map
+    if(GOOGLE_MAPS_API_KEY){
+      const s = document.createElement('script');
+      s.src = 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_MAPS_API_KEY + '&callback=initMap';
+      s.async = true; s.defer = true;
+      document.head.appendChild(s);
+    }
+
+    function initMap(){
+      // Replace iframe fallback with an actual map (centered to default city)
+      const mapEl = document.getElementById('map');
+      mapEl.innerHTML = '<div id="realMap" style="width:100%;height:100%;"></div>';
+      const map = new google.maps.Map(document.getElementById('realMap'), {
+        center: { lat: 28.6139, lng: 77.2090 },
+        zoom: 12,
+        disableDefaultUI: false
+      });
+
+      // Add a user marker sample
+      new google.maps.Marker({ position: {lat:28.6139, lng:77.2090}, map, title: 'You (sample)' });
+    }
+
+    // small accessibility / keyboard helpers
+    document.addEventListener('keydown', e => {
+      if(e.key === 'Escape') {
+        // hide toasts if any
+        toastEl.classList.remove('show');
+      }
+    });
+
+    // smooth scroll for internal clicks (if used)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const id = a.getAttribute('href').slice(1);
+        if(document.getElementById(id)) document.getElementById(id).scrollIntoView({behavior:'smooth'});
+      });
+    });
+
+  </script>
+</body>
+</html>
+
